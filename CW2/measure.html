@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png%22%3E" >
+    <title> Measure </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+inch 
+<input type=number id=inch value=0 onChange="changeInch()">
+cm 
+<input type=number id=cm value=0 onChange="changeCm()">
+
+<script>
+"use strict";
+// JavaScript comment
+function changeInch() {
+  cm.value = (Number(inch.value) * 2.54).toFixed(1);
+}
+
+function changeCm(){
+  inch.value = (Number(cm.value) / 2.54).toFixed(1);
+}
+
+</script>
+
+</body>
+</html>
