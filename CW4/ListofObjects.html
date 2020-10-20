@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://blm-fsmvu.github.io/305/work/ObjectList.html -->
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+  <title>List of Objects </title>
+
+  <style>
+    body {
+      max-width: 500px;
+    }
+
+    #inp {
+      white-space: pre-wrap;
+    }
+
+    #sample {
+      overflow-x: auto;
+    }
+
+    #out {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 id="title">List of Objects</h2>
+  <b>Text input  
+    <input type="button" id="convert" value="Convert" onclick="toList()">
+  </b>
+  <p>
+    <textarea id="inp" onchange="convert.disabled=false" rows="10" cols="50">  </textarea>
+  </p>
+  <b>JSON output</b>
+  <pre id="out"></pre>
+  <hr>
+  <b>Sample code</b>
+  <pre
+    id="sample">function toList(str) {<br>  function toObject(x) {<br>    let b = {}<br>    for (let [i,s] of x.split('\t').entries())<br>      b[keys[i]] = (isNaN(s)? s : Number(s))<br>    return b<br>  }<br>    if (str) inp.value = str<br>    else str = inp.value<br>    convert.disabled = true<br>    let [d0, ...data] = str.split('\n')<br>    let keys = d0.split('\t')<br>    console.log("Keys:", keys)<br>    let a = data.map(toObject)<br>    out.innerText = JSON.stringify(a, '' ,2)<br>    console.table(a)<br>    return a<br>}</pre>
+  <hr>
+  <p>Ref:
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters#Examples"
+      target="NewTab">Rest Parameters</a>
+  </p>
+
+  <p>Image Ref:
+    <a href="photo.PNG"
+      target="NewTab">My Image</a>
+  </p>
+
+  <h2>Yorum:</h2>
+  <p>Kendim en az 10 data içeren bir dataset oluşturdum. Daha sonra
+    bu data seti kodun içerisine yerleştirdim.
+    Sonrasında yaşı 30 dan büyük çalışanları getirdim filter ile.
+    Ayrıca yaşı 30 dan büyük kişlerin adlarını map ile getirdim.
+  </p>
+
+  <script>
+    "use strict";
+    function toList(str) {
+      function toObject(x) {
+        let b = {}
+        for (let [i, s] of x.split('\t').entries())
+          b[keys[i]] = (isNaN(s) ? s : Number(s))
+        return b
+      }
+      if (str) inp.value = str
+      else str = inp.value
+      convert.disabled = true
+      let [d0, ...data] = str.split('\n')
+      let keys = d0.split('\t')
+      console.log("Keys:", keys)
+      let a = data.map(toObject)
+      out.innerText = JSON.stringify(a, '', 2)
+      console.table(a)
+      return a
+    }
+
+    const EMPLOYEE = `name	surname	age	salary
+Ahmet	AK	25	3000
+Ayse	Sari	27	3500
+Mehmet	Mor	34	4500
+Fatma	Siyah	45	5600
+Mustafa	Elma	24	3200
+Nur	Elma	28	3700
+Ayse	Bur	35	4000
+Mert	Volkan	27	4200
+Mahmut	Can	29	3800
+Can	Yesil	32	2700`
+
+    title.innerText = document.title
+    sample.innerText = toList
+    inp.value = EMPLOYEE
+    //toList()  //array of objects
+  </script>
+
+
+
+</body>
+
+</html>
