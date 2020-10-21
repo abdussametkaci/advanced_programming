@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://maeyler.github.io/JS/hard/Table%20maker.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="https://maeyler.github.io/JS/images/JS.png">
+    <title>Poisson Table </title>
+
+    <style>
+        body {
+            max-width: 440px;
+        }
+
+        #sample {
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            color: blue;
+            padding: 5px 5px;
+        }
+
+        td {
+            border: 1px solid blue;
+            padding: 5px 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        td:hover .tip {
+            visibility: visible;
+        }
+
+        td .tip {
+            visibility: hidden;
+            font-size: small;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 5px 5px;
+            position: absolute;
+            left: 5px;
+            top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h2 id="title">Poisson Table</h2>
+
+        <table id="tablo"></table>
+
+    </center>
+
+    <hr>
+    <b>Sample Code</b>
+    <pre id="sample_code"></pre>
+    </hr>
+
+    <hr>
+    <p>Image Ref:
+        <a href="image.PNG" target="NewTab">Homework Image</a>
+    </p>
+    </hr>
+
+    <hr>
+    <img src="image.PNG">
+    <hr>
+</body>
+
+<script>
+    "use strict";
+
+    const L = [0.5, 1, 1.5, 2, 2.5, 3]
+
+    function makePoissonTable() {
+        let row = "<th></th>";
+        for (let λ of L)
+            row += "<th>λ=" + λ + "</th>";
+        let text = "<tr>" + row + "</tr>";
+        for (let x = 0; x <= 8; x++) {
+            row = "<th>x=" + x + "</th>";
+            for (let λ of L) {
+                row += "<td>" + P(x, λ).toFixed(4) + "</td>";
+            }
+            text += "<tr>" + row + "</tr>";
+        }
+
+        tablo.innerHTML = text;
+    }
+
+    function factorial(x) {
+        let num = 1
+        if (x == 0 || x == 1) {
+            return num
+        }
+
+        for (let i = 2; i <= x; i++) {
+            num *= i
+        }
+
+        return num
+
+    }
+
+    function P(x, λ) {
+        return Math.exp(-λ) * (Math.pow(λ, x) / factorial(x))
+    }
+
+    sample_code.innerText = makePoissonTable.toString()
+    makePoissonTable();
+
+</script>
+
+
+</html>
