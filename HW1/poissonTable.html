@@ -106,10 +106,13 @@
         return Math.exp(-λ) * (Math.pow(λ, x) / factorial(x))
     }
 
-    sample_code.innerText = makePoissonTable.toString() + "\n\n" 
+    makePoissonTable()
+
+    sample_code.innerText ="const L = [0.5, 1, 1.5, 2, 2.5, 3]" + "\n\n" 
+    + makePoissonTable.toString() + "\n\n" 
     + factorial.toString() + "\n\n" 
-    + P.toString()
-    makePoissonTable();
+    + P.toString() + "\n\n"
+    + " makePoissonTable()"
 
 </script>
 
