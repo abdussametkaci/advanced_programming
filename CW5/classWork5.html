@@ -24,13 +24,20 @@
   <p><input type=file multiple onChange='fileSelect(this)' /></p>
   <pre id=disp1></pre> <img id=disp2 />
 
-  <button onclick="hasWorkOrWeekend()">Show</button>
+  <hr>
+  <h2>Temprature Converter</h2>
+  inch
+  <input type=number id=inch value=0 onChange="changeInch()">
+  cm
+  <input type=number id=cm value=0 onChange="changeCM()">
+  </hr>
+
   <h2>Work Or Weekend</h2>
   <p id="entries"></p>
 
   <h2>Maps</h2>
   <p id="maps"></p>
-  
+
 
   <link href="https://maeyler.github.io/JS/sss/inspector.css" rel="stylesheet">
   <script src="https://maeyler.github.io/JS/sss/inspector.js"></script>
@@ -38,6 +45,8 @@
   <script src="chap6.js"></script>
   <script src="../exam/Quiz.js"></script>
   <script src="Async.js"></script>
+  <script src="Convert.js"></script>
+
   <script>
     "use strict";
     class Chap4 extends Menu {
@@ -83,51 +92,66 @@
     }
 
     function hasWorkOrWeekend() {
-      for (let x of JOURNAL){
-        for (let y of x.events){
-          if (y == "work" || y == "weekend"){
+      for (let x of JOURNAL) {
+        for (let y of x.events) {
+          if (y == "work" || y == "weekend") {
             entries.innerText += x.events + '\n'
             break
           }
-            
+
         }
-          
+
       }
-        
+
     }
 
-    function toMap(value){
+    function toMap(value) {
       let datas = new Map()
 
       let i = 0
-      for (let x of JOURNAL){
-        for (let y of x.events){
-          if (y == value){
-            datas.set(x.events, i+1)
+      for (let x of JOURNAL) {
+        for (let y of x.events) {
+          if (y == value) {
+            datas.set(x.events, i + 1)
             break
           }
-            
+
         }
-          
+
       }
 
       return datas
 
     }
 
-    function getWeekends(value){
-        let weekends = toMap("weekend")
+    function getWeekends(value) {
+      let weekends = toMap("weekend")
 
-        for(let x of weekends){
-            maps.innerText += x.get(value) + "\n"
-          
-        }
-        
+      for (let x of weekends) {
+        maps.innerText += x.get(value) + "\n"
+
+      }
+
     }
 
-    getWeekends("pizza")
+    function changeCM() {
+      let measure = new Convert(Number(cm.value).toFixed(1));
+      inch.value = measure.inch
+      
+    }
+
+    function changeInch() {
+      let measure = new Convert();
+      measure.inch = Number(inch.value).toFixed(1)
+      cm.value = measure.cm
+    }
 
     
+
+    hasWorkOrWeekend()
+    getWeekends("pizza")
+
+
 
   </script>
 </body>
