@@ -33,9 +33,11 @@
   </hr>
 
   <h2>Work Or Weekend</h2>
+  <button onclick="hasWorkOrWeekend()">Find Work or Weekend</button>
   <p id="entries"></p>
 
   <h2>Maps</h2>
+  <input id=map_id value=0 onChange="getWeekends(value)">
   <p id="maps"></p>
 
 
@@ -112,7 +114,8 @@
       for (let x of JOURNAL) {
         for (let y of x.events) {
           if (y == value) {
-            datas.set(x.events, i + 1)
+            datas.set(x.events, i)
+            i++
             break
           }
 
@@ -126,18 +129,25 @@
 
     function getWeekends(value) {
       let weekends = toMap("weekend")
+      let i = 0
+      weekends.forEach((values, keys) => {
+        for(let x of keys){
+          if(x == value){
+            i++
 
-      for (let x of weekends) {
-        maps.innerText += x.get(value) + "\n"
-
-      }
+          }
+        }
+        
+      })
+      console.log(i)
+      maps.innerText = "number of " + value + " is : " + i
 
     }
 
     function changeCM() {
       let measure = new Convert(Number(cm.value).toFixed(1));
       inch.value = measure.inch
-      
+
     }
 
     function changeInch() {
@@ -146,12 +156,7 @@
       cm.value = measure.cm
     }
 
-    
-
-    hasWorkOrWeekend()
-    getWeekends("pizza")
-
-
+    maps.innerText = "Number: "
 
   </script>
 </body>
