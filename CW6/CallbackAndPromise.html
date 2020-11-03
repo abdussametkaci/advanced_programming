@@ -40,7 +40,8 @@
 // JavaScript comment
 function check() {
 //write your code here
-fetch(url.value).then(r => resp.innerText = r.ok).catch(e => resp.innerText = e)
+fetch(url.value).then(r => resp.innerText = r.ok ? "OK" : "")
+                .catch(e => resp.innerText = e)
 }
 function init() {
 //write your code here
