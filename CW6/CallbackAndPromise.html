@@ -47,7 +47,7 @@ function init() {
 //write your code here
 plat.innerText = navigator.platform
 navigator.geolocation.getCurrentPosition(p => loc.innerText = 
-    p.coords.latitude.toFixed(4) + "," + p.coords.longitude.toFixed(4))
+    p.coords.latitude.toFixed(4) + ", " + p.coords.longitude.toFixed(4))
 navigator.getBattery().then(b => level.innerText = (b.level*100).toFixed(0) + "%")
 check()
 }
