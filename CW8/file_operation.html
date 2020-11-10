@@ -42,8 +42,9 @@ function checkFiles(b) {
     for(let file of a){
         if(b.size == file.size && b.type == file.type){
             isSame = true
+            let f_name = remote.value.split("/")
             out.innerText += 'Result :'+a.length+" items checked. "
-                +remote.value+" is the same as " + file.name + "\n"
+                +f_name[f_name.length-1]+" is the same as " + file.name + "\n"
         }
     }
     if(isSame == false){
