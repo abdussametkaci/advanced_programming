@@ -33,17 +33,19 @@ function checkFiles(b) {
     let a = [...local.files]
     //Implement this
     let isSame = false
+    let diff = ""
     out.innerText = ''
-    /*
+    
     for(let file of a){
-        out.innerText += file.name + "\n"
+        out.innerText += file.name
     }
-    */
+    
     for(let file of a){
         if(b.size == file.size || b.type == file.type){
             isSame = true
+            
             let f_name = remote.value.split("/")
-            out.innerText += 'Result :'+a.length+" items checked. "
+            out.innerText += '\nResult :'+a.length+" items checked. "
                 +f_name[f_name.length-1]+" is the same as " + file.name + "\n"
         }
     }
