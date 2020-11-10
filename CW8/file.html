@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="/image/nuts.jpg">
+    <link rel="icon" href="https://abdussametkaci.github.io/advance_programming/CW8/image/nuts.jpg">
     <title>Remote and Local Files </title>
     <style>
         body { max-width: 500px; }
@@ -15,7 +15,7 @@
 <p><b id=docName></b> &nbsp; <a href="Reading_files">Reference</a>
 </p>
 <p>Remote file <br>
-  <input type=text id=remote size=35 value="/image/nuts.jpg">
+  <input type=text id=remote size=35 value="https://abdussametkaci.github.io/advance_programming/CW8/image/nuts.jpg">
 </p>
 <p><input type=file id=local multiple onChange='fileSelect()' /></p>  
 <pre id=out></pre>
@@ -32,15 +32,23 @@ function fileSelect() {
 function checkFiles(b) {
     let a = [...local.files]
     //Implement this
-    out.innerText += 'Implement this '
+    let isSame = false
+    out.innerText = ''
+    /*
     for(let file of a){
         out.innerText += file.name + "\n"
     }
+    */
     for(let file of a){
-        if(remote.value.size == file.size && remote.value.type == file.type){
-            out.innerText += remote.value + " is the same as " + file.name + "\n"
+        if(b.size == file.size && b.type == file.type){
+            isSame = true
+            out.innerText += 'Result :'+a.length+" items checked. "+remote.value+" is the same as " + file.name + "\n"
         }
     }
+    if(isSame == false){
+        out.innerText += 'Result :'+a.length+" items checked all files are different"
+    }
+    
 }
 const L = console.log
 docName.innerText = document.title
