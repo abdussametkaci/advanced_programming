@@ -42,7 +42,8 @@ function checkFiles(b) {
     for(let file of a){
         if(b.size == file.size && b.type == file.type){
             isSame = true
-            out.innerText += 'Result :'+a.length+" items checked. "+remote.value+" is the same as " + file.name + "\n"
+            out.innerText += 'Result :'+a.length+" items checked. "
+                +remote.value+" is the same as " + file.name + "\n"
         }
     }
     if(isSame == false){
