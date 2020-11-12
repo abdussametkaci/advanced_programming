@@ -19,7 +19,7 @@ const TITLE = "Counter",
 
 function makePage() {
   let bold = elt("b", "Sample code")
-  let pre  = elt("pre", makePage, "\n",increment, "\n", increment)
+  let pre  = elt("pre", makePage, "\n",increment, "\n", changeOut)
   let link = elt("a", "JS Tutorial")
   let initial =  elt("p", "Initial")
   let input = elt("input")
