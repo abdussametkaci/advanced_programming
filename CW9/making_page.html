@@ -19,7 +19,7 @@ const TITLE = "Counter",
 
 function makePage() {
   let bold = elt("b", "Sample code")
-  let pre  = elt("pre", makePage)
+  let pre  = elt("pre", makePage, "\n",increment, "\n", increment)
   let link = elt("a", "JS Tutorial")
   let initial =  elt("p", "Initial")
   let input = elt("input")
@@ -63,11 +63,13 @@ t.innerHTML = tree.join('<br>');
 document.body.append(t);
 
 function increment() {
-  document.getElementById("out").innerText = Number(document.getElementById("out").innerText)+1
+  document.getElementById("out").innerText = 
+  Number(document.getElementById("out").innerText)+1
 }
 
 function changeOut(){
-  document.getElementById("out").innerText = Number(document.getElementById("inp").value)
+  document.getElementById("out").innerText = 
+  Number(document.getElementById("inp").value)
 }
 increment()
 </script>
