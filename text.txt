@@ -1,3 +1,1 @@
-One
-Two
-Ten
+"One\nTwo\nTen"
