@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Event Programming </title>
+
+  <style>
+    /* CSS comment */
+    body {
+      max-width: 440px;
+    }
+
+    #url {
+      width: 190px;
+    }
+
+    span,
+    #url {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 id=title></h2>
+  <hr />
+  <h3>Battery Status</h3>
+  <p title="Battery Level">
+    Battery Status: <span id=battery_status>??</span><br>
+    Battery level: <span id=level>??</span><br>
+    Discharging Time: <span id=time>??</span><br>
+  </p>
+  <hr />
+
+  <hr />
+  <h3>Online Status</h3>
+  <p title="Online Status">
+    Online Status: <span id=online_status>??</span><br>
+  </p>
+  <hr />
+
+  <hr />
+  <h3>Keyboard</h3>
+  <p title="Keyboard">
+    Keyboard: <span id=keyboard>??</span><br>
+  </p>
+  <hr />
+
+  <hr />
+  <b>Sample code</b>
+  <pre id=sample>This text is not shown. Why?</pre>
+  <hr />
+
+  <script>
+    "use strict";
+    function init() {
+      let keys = [] // keydown keys
+
+      navigator.getBattery().then(b => {
+        b.onchargingchange = () => {
+          battery_status.innerText = (b.charging ? "Charging..." : "Discharging")
+          time.innerText = (b.dischargingTime / 3600).toFixed(2) + " remaining"
+        }
+        b.onlevelchange = () => level.innerText = 100 * b.level + '%'
+      })
+
+      ononline = event => online_status.innerText = "connected -- online"
+      onoffline = event => online_status.innerText = "disconnected -- offline"
+
+      onkeydown = event => {
+       if(!keys.includes(event.key)) keys.push(event.key)
+         keyboard.innerText = keys
+      }
+      
+      onkeyup  = event =>{
+        if(keys.includes(event.key)) keys.pop(event.key)
+        keyboard.innerText = keys
+      } 
+    }
+
+    title.innerText = document.title;
+    sample.innerText = init + '\n';
+    init();
+  </script>
+
+</body>
+
+</html>
