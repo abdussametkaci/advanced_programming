@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://blm-fsmvu.github.io/305/work/GitHub_Users.html -->
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  <title>GitHub Users</title>
+  <style>
+    body {
+      max-width: 337px;
+    }
+
+    img {
+      padding-right: 12px;
+      width: 337px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 id="title">GitHub Users</h2>
+  <input type="text" id="usr" value="maeyler" onchange="readUser()">
+  <p id="out"><img src="" align="left">BLM-FSMVU, istanbul<br><a href="https://github.com/BLM-FSMVU"
+      target="NewTab">github.com/BLM-FSMVU</a><br>2 repos<br><br>305,
+    blm-fsmvu.github.io</p>
+
+  <script>
+    "use strict";
+    function error(t) {
+      out.style.color = 'red'
+      out.innerText = t; throw t
+    }
+    async function toJSON(url) {
+      let r = await fetch(url)
+      if (!r.ok) error(r.statusText)
+      return r.json()
+    }
+    async function readUser() {
+      const BR = "<BR>",
+        URL = "https://api.github.com/users/"
+      let u = await toJSON(URL + usr.value)
+      if (!u || !u.login)
+        error(usr.value + ' not found')
+      //u.login is the same as usr.value
+      out.style.color = ''
+      out.innerHTML = ''
+      //start with a tiny image
+      let i = document.createElement("img")
+      i.src = u.avatar_url
+      i.align = "left"
+      out.appendChild(i)
+      //add name and location
+      let s = (u.name ? u.name : "Name not found!")
+      out.innerHTML += "<h3>" + s + "</h3>"
+      let login = (u.login ? u.login : "Login not found!")
+      out.innerHTML += BR + login
+      let location = (u.location ? u.location : "Location not found!")
+      out.innerHTML += BR + location
+      let company = (u.company ? u.company : "Company not found!")
+      out.innerHTML += BR + company
+
+      if (u.email) {
+        let a = document.createElement("a")
+        a.href = u.email
+        a.target = "NewTab"
+        a.innerHTML = BR + u.email
+        out.appendChild(a)
+        //s += BR + u.email
+      } else {
+        out.innerHTML += BR + "Email not found!"
+      }
+
+      if (u.blog) {
+        let a = document.createElement("a")
+        a.href = u.blog
+        a.target = "NewTab"
+        a.innerHTML = BR + u.blog
+        out.appendChild(a)
+      } else {
+        out.innerHTML += BR + "Blog not found!"
+      }
+    }
+    title.innerText = document.title
+    out.innerText = "Reading data"
+    readUser()
+  </script>
+
+
+
+</body>
+
+</html>
