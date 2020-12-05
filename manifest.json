@@ -8,9 +8,9 @@
   "theme-color": "red",
   "icons": [
     {
-      "src": "images/nuts.jpg",
+      "src": "images/nuts.png",
       "sizes": "192x192",
-      "type": "image/jpg"
+      "type": "image/png"
     }
   ]
 }
