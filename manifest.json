@@ -1,0 +1,16 @@
+{
+  "name": "advanced programming",
+  "short_name": "AP",
+  "description": "JavaScript sample files",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "red",
+  "theme-color": "red",
+  "icons": [
+    {
+      "src": "images/nuts.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    }
+  ]
+}
