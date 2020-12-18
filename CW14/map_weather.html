@@ -55,9 +55,8 @@
 </head>
 
 <div>
-    <p>LATITUDE</p><input id="latitude" value=41 onChange="getLat()">
-    <p>LONGITUDE</p><input id="longitude" value=35 onChange="getLon()">
-    <p></p><button onclick="askWeather()">GET WEATHER</button>
+    <p>Latitude</p><input id="latitude" type=number value=41 onChange="getLat()">
+    <p>Longitude</p><input id="longitude" type=number value=29 onChange="getLon()">
 </div>
 
 <body>
@@ -125,6 +124,7 @@
     }
 
     var lat = latitude.value, lon = longitude.value;  //global values
+
     function getLat() {
         lat = latitude.value
         askWeather()
@@ -150,6 +150,7 @@
         getLocation(lat, lon)
         showWeather(data)
     }
+
     function showWeather(data) {
         let w = data.weather[0]; showIcon(w.icon)
         let celsius = convert(data.main.temp).toFixed(0)
@@ -209,6 +210,7 @@
     }
 
     getAPIkey();
+    askWeather();
     init();
 </script>
 
