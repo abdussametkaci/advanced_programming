@@ -3,208 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Hanoi </title>
-    <style>
-        .wrapper {
-            position: relative;
-        }
-
-        .canvas-layer {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    </style>
 </head>
 
 <body>
+    <div id="app">
+        <h1> Tower of Hanoi </h1>
+        <text> Disk: </text>
+        <select id="mySelect" class="select-option" onchange="numberOfDisk()">
+            <option value="4" class="select-option">4</option>
+            <option value="3" class="select-option">3</option>
+            <option value="2" class="select-option">2</option>
+            <option value="1" class="select-option">1</option>
+        </select>
 
-    <h1> Hanoi </h1>
-    <text>Disk: </text>
-    <select id="mySelect" onchange="numberOfDisk()">
-        <option value="4">4</option>
-        <option value="3">3</option>
-        <option value="2">2</option>
-        <option value="1">1</option>
-    </select>
-    <button onclick="reset()">Reset</button>
-    <button onclick="nextStep()">Next Step</button>
-    <button onclick="simulate()">Simulate</button>
+        <button onclick="reset()">Reset</button>
+        <button onclick="nextStep()">Next Step</button>
+        <button id="btn_simulate" onclick="run()">Simulate</button>
 
-    <div id="asd" class="wrapper">
-        <canvas id="canvas" class="canvas-layer" width=500 height=500 style="z-index: 1;"></canvas>
-        <canvas id="yellow" class="canvas-layer" width=500 height=500 style="z-index: 2;"></canvas>
-        <canvas id="red" class="canvas-layer" width=500 height=500 style="z-index: 3;"></canvas>
-        <canvas id="blue" class="canvas-layer" width=500 height=500 style="z-index: 4;"></canvas>
-        <canvas id="green" class="canvas-layer" width=500 height=500 style="z-index: 5;"></canvas>
+        <div id="asd" class="wrapper">
+            <canvas id="canvas" class="canvas-layer" width=500 height=500 style="z-index: 1;"></canvas>
+            <canvas id="yellow" class="canvas-layer" width=500 height=500 style="z-index: 2;"></canvas>
+            <canvas id="red" class="canvas-layer" width=500 height=500 style="z-index: 3;"></canvas>
+            <canvas id="blue" class="canvas-layer" width=500 height=500 style="z-index: 4;"></canvas>
+            <canvas id="green" class="canvas-layer" width=500 height=500 style="z-index: 5;"></canvas>
+        </div>
+
     </div>
 
-    <script>
-        "use strict"
-        let steps = []
-        let n = 4// number of disk
-        let colum = { "A": n, "B": 0, "C": 0 } // default
-        let disks = [
-            {
-                "disk": 1,
-                "color": "yellow",
-                "destinations": {
-                    "A": [60, 210, 40, 10],
-                    "B": [180, 210, 40, 10],
-                    "C": [300, 210, 40, 10]
-                }
-            },
-            {
-                "disk": 2,
-                "color": "red",
-                "destinations": {
-                    "A": [50, 210, 60, 10],
-                    "B": [170, 210, 60, 10],
-                    "C": [290, 210, 60, 10]
-                }
-            },
-            {
-                "disk": 3,
-                "color": "blue",
-                "destinations": {
-                    "A": [40, 210, 80, 10],
-                    "B": [160, 210, 80, 10],
-                    "C": [280, 210, 80, 10]
-                }
-            },
-            {
-                "disk": 4,
-                "color": "green",
-                "destinations": {
-                    "A": [30, 210, 100, 10],
-                    "B": [150, 210, 100, 10],
-                    "C": [270, 210, 100, 10]
-                }
-            }
+    <div id="message_box" class="callout">
+        <div class="callout-header">Simulate Finished</div>
+        <span id="closebtn" class="closebtn">×</span>
+        <div class="callout-container">
+            <p id="message_score">Number of Moves: </p>
+        </div>
+    </div>
 
-        ]
-        function hanoi(n, source, auxiliary, destination) {
-            if (n == 1) {
-                console.log("Move disk:", n, "from", source, "to", destination)
-                steps.push({ "disk": n, "from": source, "destination": destination })
-                //move(n, destination)
-            }
-            else {
-                hanoi(n - 1, source, destination, auxiliary);
-                console.log("Move disk:", n, "from", source, "to", destination);
-                //move(n, destination)
-                steps.push({ "disk": n, "from": source, "destination": destination })
-                hanoi(n - 1, auxiliary, source, destination);
-            }
-        }
-
-        function drawRect() {
-            let canvas = document.getElementById('canvas');
-            if (canvas.getContext) {
-                let ctx = canvas.getContext('2d');
-                ctx.fillStyle = "black";
-                //Draw a border
-                ctx.strokeRect(10, 10, 400, 350);
-                //Draw A column
-                ctx.fillRect(75, 120, 10, 100);
-                ctx.fillRect(30, 220, 100, 10);
-                //Draw B column
-                ctx.fillRect(195, 120, 10, 100);
-                ctx.fillRect(150, 220, 100, 10);
-                //Draw C column
-                ctx.fillRect(315, 120, 10, 100);
-                ctx.fillRect(270, 220, 100, 10);
-
-            }
-        }
-
-        function drawObj(x, y, width, height, color) {
-            let canvas = document.getElementById(color);
-            if (canvas.getContext) {
-                let ctx = canvas.getContext('2d');
-                ctx.fillStyle = color;
-                //Draw the left pillar
-                ctx.fillRect(x, y, width, height);
-            }
-        }
-
-        function move(d, from, to) {
-            let disk = disks[(4 - n) + (d - 1)]
-            let color = disk["color"]
-            clear(color)
-            //drawObj(...disk["destinations"][to], color)
-            let a = [...disk["destinations"][to]]
-            a[1] -= colum[to] * 10
-            drawObj(...a, color)
-            colum[from]--
-            colum[to]++
-        }
-
-
-        function clear(disk) {
-            let canvas = document.getElementById(disk);
-            if (canvas.getContext) {
-                let ctx = canvas.getContext('2d');
-                ctx.clearRect(10, 10, 400, 350);
-                ctx.fillStyle = "white";
-            }
-        }
-
-        function clearAll() {
-            clear("canvas")
-            for (let disk of disks) clear(disk["color"])
-        }
-
-        let i = 0
-        let simulation
-        function nextStep() {
-            if (i == steps.length) {
-                stop(simulation)
-                return
-            }
-            move(steps[i]["disk"], steps[i]["from"], steps[i]["destination"])
-            i++
-        }
-
-        function reset() {
-            clearAll()
-            drawRect()
-            drawObj(60, 180, 40, 10, "yellow")
-            drawObj(50, 190, 60, 10, "red")
-            drawObj(40, 200, 80, 10, "blue")
-            drawObj(30, 210, 100, 10, "green")
-            stop(simulation)
-            i = 0
-            colum = { "A": n, "B": 0, "C": 0 }
-            steps = []
-            hanoi(n, 'A', 'B', 'C')
-            console.log(steps)
-            for(let index = 1; index <= 4; index++) {
-                let canvas = document.getElementById(disks[index - 1]["color"])
-                canvas.style.display = "inline"
-            }
-
-            for(let index = 1; index <= 4 - n; index++) {
-                let canvas = document.getElementById(disks[index - 1]["color"])
-                canvas.style.display = "none"
-            }
-        }
-
-        function simulate() {
-            simulation = setInterval(nextStep, 1000)
-        }
-
-        function stop(simulation) {
-            clearInterval(simulation)
-        }
-
-        function numberOfDisk() {
-            n =  Number(document.getElementById("mySelect").value)
-            reset()
-        }
-
-        reset()
-    </script>
+    <link rel="stylesheet" href="tower_of_hanoi.css">
+    <script type="text/javascript" src="tower_of_hanoi.js"></script>
 </body>
 
 </html>
