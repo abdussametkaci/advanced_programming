@@ -1,0 +1,103 @@
+.wrapper {
+    position: relative;
+}
+
+.canvas-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.callout {
+    display: none;
+    position: fixed;
+    padding-top: 200px;
+    /* Location of the box */
+    left: 10px;
+    top: 10px;
+    bottom: 35px;
+    right: 20px;
+    margin-left: 80px;
+    max-width: 300px;
+    z-index: 6;
+}
+
+.callout-header {
+    padding: 25px 15px;
+    background: rgb(153, 59, 59);
+    font-size: 30px;
+    color: white;
+}
+
+.callout-container {
+    padding: 15px;
+    background-color: #ccc;
+    color: black
+}
+
+.closebtn {
+    position: absolute;
+    padding-top: 200px;
+    /* Location of the box */
+    top: 5px;
+    right: 15px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: lightgrey;
+}
+
+#app {
+    border-radius: 25px;
+    background: #45926b;
+    padding: 20px;
+    width: 450px;
+    height: 450px;
+}
+
+h1 {
+    text-align: center;
+}
+
+text {
+    font-size: large;
+}
+
+select {
+    border-radius: 5px;
+    background: #4CAF50;
+    width: 40px;
+    height: 30px;
+}
+
+.select-option {
+    color: white;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+button:hover {
+    background-color: #3e8e41
+}
+
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
