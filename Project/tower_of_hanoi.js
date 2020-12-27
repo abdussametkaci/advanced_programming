@@ -2,6 +2,7 @@
 let steps = []
 let n = 4// number of disk
 let colum = { "A": n, "B": 0, "C": 0 } // default
+
 let disks = [
     {
         "disk": 1,
@@ -41,6 +42,7 @@ let disks = [
     }
 
 ]
+
 function hanoi(n, source, auxiliary, destination) {
     if (n == 1) {
         console.log("Move disk:", n, "from", source, "to", destination)
@@ -185,5 +187,12 @@ closebtn.onclick = () => {
     reset()
 }
 
+mySelect.onchange = () => numberOfDisk()
+
+btn_reset.onclick = () => reset()
+
+btn_next.onclick = () => nextStep()
+
+btn_simulate.onclick = () => run()
 
 reset()
