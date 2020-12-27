@@ -116,7 +116,7 @@ function clearAll() {
 let i = 0
 let simulation
 function nextStep() {
-    if (i == steps.length) {
+    if (i == steps.length - 1) {
         stop(simulation)
         popup_message()
         return
