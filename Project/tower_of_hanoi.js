@@ -1,8 +1,8 @@
 "use strict"
 let steps = []
-let n = 4// number of disk
+let n = 4 // number of disk
 let colum = { "A": n, "B": 0, "C": 0 } // default
-
+// disk objects
 let disks = [
     {
         "disk": 1,
@@ -47,12 +47,10 @@ function hanoi(n, source, auxiliary, destination) {
     if (n == 1) {
         console.log("Move disk:", n, "from", source, "to", destination)
         steps.push({ "disk": n, "from": source, "destination": destination })
-        //move(n, destination)
     }
     else {
         hanoi(n - 1, source, destination, auxiliary);
         console.log("Move disk:", n, "from", source, "to", destination);
-        //move(n, destination)
         steps.push({ "disk": n, "from": source, "destination": destination })
         hanoi(n - 1, auxiliary, source, destination);
     }
@@ -68,12 +66,16 @@ function drawRect() {
         //Draw A column
         ctx.fillRect(85, 120, 10, 100);
         ctx.fillRect(30, 220, 120, 13);
+        ctx.font = "30px Arial";
+        ctx.fillText("A", 80, 100);
         //Draw B column
         ctx.fillRect(215, 120, 10, 100);
         ctx.fillRect(160, 220, 120, 13);
+        ctx.fillText("B", 210, 100);
         //Draw C column
         ctx.fillRect(345, 120, 10, 100);
         ctx.fillRect(290, 220, 120, 13);
+        ctx.fillText("C", 340, 100);
 
     }
 }
@@ -83,7 +85,6 @@ function drawObj(x, y, width, height, color) {
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
         ctx.fillStyle = color;
-        //Draw the left pillar
         ctx.fillRect(x, y, width, height);
     }
 }
@@ -140,6 +141,7 @@ function reset() {
     colum = { "A": n, "B": 0, "C": 0 }
     steps = []
     hanoi(n, 'A', 'B', 'C')
+    console.log("array of steps")
     console.log(steps)
     for (let index = 1; index <= 4; index++) {
         let canvas = document.getElementById(disks[index - 1]["color"])
