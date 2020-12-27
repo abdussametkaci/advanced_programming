@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="../images/nuts.png">
     <title>Tower of Hanoi</title>
 </head>
 
@@ -12,26 +11,31 @@
     <div id="app">
         <h1> Tower of Hanoi </h1>
         <text> Disk: </text>
-        <select id="mySelect" class="select-option" onchange="numberOfDisk()">
+        <select id="mySelect" class="select-option">
             <option value="4" class="select-option">4</option>
             <option value="3" class="select-option">3</option>
             <option value="2" class="select-option">2</option>
             <option value="1" class="select-option">1</option>
         </select>
 
-        <button onclick="reset()">Reset</button>
-        <button onclick="nextStep()">Next Step</button>
-        <button id="btn_simulate" onclick="run()">Simulate</button>
+        <button id="btn_reset">Reset</button>
+        <button id="btn_next">Next Step</button>
+        <button id="btn_simulate">Simulate</button>
 
         <div class="wrapper">
-            <canvas id="canvas" class="canvas-layer" width=500 height=500 style="z-index: 1;"></canvas>
-            <canvas id="yellow" class="canvas-layer" width=500 height=500 style="z-index: 2;"></canvas>
-            <canvas id="red" class="canvas-layer" width=500 height=500 style="z-index: 3;"></canvas>
-            <canvas id="blue" class="canvas-layer" width=500 height=500 style="z-index: 4;"></canvas>
-            <canvas id="green" class="canvas-layer" width=500 height=500 style="z-index: 5;"></canvas>
+            <canvas id="canvas" class="canvas-layer" width=500px height=340px style="z-index: 1;"></canvas>
+            <canvas id="yellow" class="canvas-layer" width=500px height=340px style="z-index: 2;"></canvas>
+            <canvas id="red" class="canvas-layer" width=500px height=340px style="z-index: 3;"></canvas>
+            <canvas id="blue" class="canvas-layer" width=500px height=340px style="z-index: 4;"></canvas>
+            <canvas id="green" class="canvas-layer" width=500px height=340px style="z-index: 5;"></canvas>
         </div>
+        <div style="z-index: 10;">
+            <text> Reference for CSS: </text><a href="https://www.w3schools.com/css/default.asp">w3schools</a><br>
+        </div>
+       
 
     </div>
+
 
     <div id="message_box" class="callout">
         <div class="callout-header">Simulate Finished</div>
