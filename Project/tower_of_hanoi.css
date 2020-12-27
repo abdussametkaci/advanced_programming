@@ -1,5 +1,7 @@
 .wrapper {
     position: relative;
+    width: 500px;
+    height: 335px;
 }
 
 .canvas-layer {
@@ -19,7 +21,7 @@
     right: 20px;
     margin-left: 80px;
     max-width: 300px;
-    z-index: 6;
+    z-index: 6; /* top of canvas layer*/
 }
 
 .callout-header {
@@ -60,10 +62,12 @@
 
 h1 {
     text-align: center;
+    color: whitesmoke;
 }
 
 text {
     font-size: large;
+    color: whitesmoke;
 }
 
 select {
