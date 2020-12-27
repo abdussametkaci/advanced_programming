@@ -1,5 +1,5 @@
 "use strict"
-let steps = []
+let steps = [] // moving steps
 let n = 4 // number of disk
 let colum = { "A": n, "B": 0, "C": 0 } // default
 // disk objects
@@ -43,6 +43,7 @@ let disks = [
 
 ]
 
+// hanoi algorithm
 function hanoi(n, source, auxiliary, destination) {
     if (n == 1) {
         console.log("Move disk:", n, "from", source, "to", destination)
@@ -56,6 +57,7 @@ function hanoi(n, source, auxiliary, destination) {
     }
 }
 
+// draw columns and floors
 function drawRect() {
     let canvas = document.getElementById('canvas');
     if (canvas.getContext) {
@@ -80,6 +82,7 @@ function drawRect() {
     }
 }
 
+// dwrawing disk object for wanting color
 function drawObj(x, y, width, height, color) {
     let canvas = document.getElementById(color);
     if (canvas.getContext) {
@@ -89,19 +92,20 @@ function drawObj(x, y, width, height, color) {
     }
 }
 
+// move disk from source to destination
 function move(d, from, to) {
-    let disk = disks[(4 - n) + (d - 1)]
+    let disk = disks[(4 - n) + (d - 1)] // select disk
     let color = disk["color"]
-    clear(color)
+    clear(color) // delete that disk
     //drawObj(...disk["destinations"][to], color)
-    let a = [...disk["destinations"][to]]
-    a[1] -= colum[to] * 10
-    drawObj(...a, color)
-    colum[from]--
-    colum[to]++
+    let a = [...disk["destinations"][to]] // get disk destinations
+    a[1] -= colum[to] * 10 // axis y (a[1]) decrease 10px
+    drawObj(...a, color) // drwing disk for new coordinates
+    colum[from]-- // decrease number of disk in source
+    colum[to]++ // increase number of disk in destination
 }
 
-
+// clear canvas object
 function clear(disk) {
     let canvas = document.getElementById(disk);
     if (canvas.getContext) {
@@ -116,18 +120,20 @@ function clearAll() {
     for (let disk of disks) clear(disk["color"])
 }
 
-let i = 0
-let simulation
+let i = 0 // index for nth step
+let simulation // reference to simulation
 function nextStep() {
-    if (i == steps.length - 1) {
-        stop(simulation)
-        popup_message()
+    if (i == steps.length - 1) { // if simulation or steps is done
+        stop(simulation)    // stop simulation
+        popup_message() // and show message
         return
     }
+    // otherwise continue to moving disk
     move(steps[i]["disk"], steps[i]["from"], steps[i]["destination"])
     i++
 }
 
+// reset according to number of disk
 function reset() {
     btn_simulate.innerHTML = "Simulate"
     clearAll()
@@ -143,11 +149,13 @@ function reset() {
     hanoi(n, 'A', 'B', 'C')
     console.log("array of steps")
     console.log(steps)
+    // show disk
     for (let index = 1; index <= 4; index++) {
         let canvas = document.getElementById(disks[index - 1]["color"])
         canvas.style.display = "inline"
     }
 
+    // not show disk
     for (let index = 1; index <= 4 - n; index++) {
         let canvas = document.getElementById(disks[index - 1]["color"])
         canvas.style.display = "none"
@@ -162,6 +170,7 @@ function stop(simulation) {
     clearInterval(simulation)
 }
 
+// run the simulation
 function run() {
     if (btn_simulate.innerHTML == 'Simulate') {
         btn_simulate.innerHTML = "Stop"
@@ -172,11 +181,13 @@ function run() {
     }
 }
 
+// get number of disk
 function numberOfDisk() {
     n = Number(document.getElementById("mySelect").value)
     reset()
 }
 
+// show message
 function popup_message() {
     message_score.innerText = "Number of Moves: " + (n * n - 1)
     popup()
