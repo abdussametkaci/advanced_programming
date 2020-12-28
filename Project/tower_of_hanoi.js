@@ -189,7 +189,7 @@ function numberOfDisk() {
 
 // show message
 function popup_message() {
-    message_score.innerText = "Number of Moves: " + (n * n - 1)
+    message_score.innerText = "Number of Moves: " + (Math.pow(2, n) - 1)
     popup()
 }
 
