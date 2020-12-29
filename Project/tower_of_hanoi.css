@@ -10,53 +10,13 @@
     top: 0;
 }
 
-.callout {
-    display: none;
-    position: fixed;
-    padding-top: 200px;
-    /* Location of the box */
-    left: 10px;
-    top: 10px;
-    bottom: 35px;
-    right: 20px;
-    margin-left: 80px;
-    max-width: 300px;
-    z-index: 6; /* top of canvas layer*/
-}
-
-.callout-header {
-    padding: 25px 15px;
-    background: rgb(153, 59, 59);
-    font-size: 30px;
-    color: white;
-}
-
-.callout-container {
-    padding: 15px;
-    background-color: #ccc;
-    color: black
-}
-
-.closebtn {
-    position: absolute;
-    padding-top: 200px;
-    top: 5px;
-    right: 15px;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.closebtn:hover {
-    color: lightgrey;
-}
-
 #app {
     border-radius: 25px;
     background: #45926b;
     padding: 20px;
-    width: 450px;
+    width: 470px;
     height: 450px;
+    margin: auto;
 }
 
 h1 {
@@ -103,4 +63,13 @@ button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+}
+
+#my_name {
+    padding-left: 12em;
+}
+
+*{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent; /* For some Androids */
 }
