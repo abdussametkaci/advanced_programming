@@ -13,15 +13,16 @@
         <h1> Tower of Hanoi </h1>
         <text> Disk: </text>
         <select id="mySelect" class="select-option">
+            <option value="5" class="select-option">5</option>
             <option value="4" class="select-option">4</option>
             <option value="3" class="select-option">3</option>
             <option value="2" class="select-option">2</option>
-            <option value="1" class="select-option">1</option>
         </select>
 
         <button id="btn_reset">Reset</button>
         <button id="btn_next">Next Step</button>
         <button id="btn_simulate">Simulate</button>
+        <text>Counter: </text><text id=current_step>0</text><text>/</text><text id=step_number>0</text>
 
         <div class="wrapper">
             <canvas id="canvas" class="canvas-layer" width=500px height=340px style="z-index: 1;"></canvas>
@@ -29,21 +30,13 @@
             <canvas id="red" class="canvas-layer" width=500px height=340px style="z-index: 3;"></canvas>
             <canvas id="blue" class="canvas-layer" width=500px height=340px style="z-index: 4;"></canvas>
             <canvas id="green" class="canvas-layer" width=500px height=340px style="z-index: 5;"></canvas>
+            <canvas id="purple" class="canvas-layer" width=500px height=340px style="z-index: 6;"></canvas>
         </div>
-        <div style="z-index: 10;">
-            <text> Reference for CSS: </text><a href="https://www.w3schools.com/css/default.asp" target="_blank">w3schools</a><br>
+        <div>
+            <text> Ref: </text><a href="https://www.w3schools.com/css/default.asp" target="_blank">w3schools</a>
+            <text id="my_name">Abdussamet KACI</text>
         </div>
        
-
-    </div>
-
-
-    <div id="message_box" class="callout">
-        <div class="callout-header">Simulate Finished</div>
-        <span id="closebtn" class="closebtn">×</span>
-        <div class="callout-container">
-            <p id="message_score">Number of Moves: </p>
-        </div>
     </div>
 
     <link rel="stylesheet" href="tower_of_hanoi.css">
